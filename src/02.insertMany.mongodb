@@ -1,0 +1,64 @@
+use("Revistero")
+
+// Se agregan varios documentos con una sola instrucción.
+// En caso de claves repetidas, ningún elemento se va a crear
+// En caso de que un elemento este repetido, pero despues de ese haya uno sin problemas,
+// se crean los documentos hasta donde se produjo el problema.
+db.Revistas.insertMany([
+    {
+        _id: 1,
+        titulo: "Billiken",
+        tipo: "Revista",
+        precio: 200,
+        etiquetas: ["niños", "informativo", "Argentina"]
+    },
+    {
+        _id: 2,
+        titulo: "Gente",
+        tipo: "Revista",
+        precio: 250.5,
+        etiquetas: ["drama", "actualidad", "Argentina"]
+    },
+    {
+        _id: 3,
+        titulo: "Muy interesante",
+        tipo: "Revista",
+        precio: 300,
+        etiquetas: ["informativa", "ciencia", "cultura", "ARGENTINA"]
+    }
+])
+
+// Alternativamente, se puede insertar Revistas sin problemas de duplicidad con ordered
+// incluso estando después de un documento con problemas de duplicidad
+db.Revistas.insertMany([
+    {
+        _id: 4,
+        titulo: "Todo Mafalda",
+        tipo: "Libro",
+        precio: 12000,
+        etiquetas: ["humor", "politica", "cultura"]
+    },
+    {
+        _id: 5,
+        titulo: "Un Mundo Inmenso",
+        tipo: "Libro",
+        precio: 5000,
+        etiquetas: ["informativo", "con imagenes", "universal"]
+    },
+    {
+        _id: 4,
+        titulo: "Spiderman",
+        tipo: "Comic",
+        precio: 500,
+        etiquetas: ["comic/novelag", "superheroes", "araña"]
+    },
+    {
+        _id: 6,
+        titulo: "El Eternauta",
+        tipo: "Libro",
+        precio: 10000,
+        etiquetas: ["comic/novelag", "con imagenes", "Universal"]
+    }
+], {
+    ordered:false
+})

@@ -1,0 +1,29 @@
+use("platzi_store")
+
+db.inventory.drop()
+
+db.inventory.insertMany([
+  { _id: 1, item: { name: "ab", code: "123" }, qty: 15, tags: ["A", "B", "C"] },
+  { _id: 2, item: { name: "cd", code: "123" }, qty: 20, tags: ["B"] },
+  { _id: 3, item: { name: "ij", code: "456" }, qty: 25, tags: ["A", "B"] },
+  { _id: 4, item: { name: "xy", code: "456" }, qty: 30, tags: ["B", "A"] },
+  { _id: 5, item: { name: "mn", code: "000" }, qty: 20, tags: [["A", "B"], "C"] },
+])
+
+// El comando $eq permite encontrar los valores que cumplan con una igualdad
+db.inventory.find({qty: {$eq:20}})
+
+// El comando $ne permite encontrar los valores que sean distintos a la condición indicada
+db.inventory.find({qty: {$ne:20}})
+
+// Al igual que los condicionales al momento de hacer update/delete,
+// se pueden especificar para buscar valores concretos
+
+db.inventory.updateMany(
+    {qty: {$ne:20}},
+    {
+        $inc:{
+            qty:30
+        }
+    }
+)

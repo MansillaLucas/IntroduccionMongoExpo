@@ -1,0 +1,5 @@
+// Si Mongo no encuentra la Revistero, la crea
+use("Revistero")
+
+// Vacia la colección de todos los documentos
+db.Revistas.drop()

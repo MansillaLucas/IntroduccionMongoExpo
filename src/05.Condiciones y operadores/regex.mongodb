@@ -1,0 +1,28 @@
+use("platzi_store")
+
+db.inventory.drop()
+
+db.inventory.insertMany([
+  { _id: 1, item: { name: "ab", code: "123", description : "Single line description."    }, qty: 15, tags: ["A", "B", "C"] },
+  { _id: 2, item: { name: "cd", code: "123", description : "First line\nSecond LINE"     }, qty: 20, tags: ["B"] },
+  { _id: 3, item: { name: "ij", code: "456", description : "Many spaces before     line" }, qty: 25, tags: ["A", "B"] },
+  { _id: 4, item: { name: "xy", code: "456", description : "Multiple\nline description"  }, qty: 30, tags: ["B", "A"] },
+  { _id: 5, item: { name: "mn", code: "000" }, qty: 20, tags: [["A", "B"], "C"] },
+])
+
+// Al buscar una palabra entre dos barras, se interpreta como una expresión regular.
+// Esto permite buscar elementos enteros mediante expresiones vagas que concuerden con la busqueda.
+db.inventory.find({"item.description":/line/})
+
+// Naturalmente, las regex son case sensitive,
+// pero podemos ignorar esta restriccion poniendo el operador i al final.
+db.inventory.find({"item.description":/LINE/i})
+
+// Poner un $ al final del regex permite encontrar objetos que terminen con esa expresion
+db.inventory.find({"item.description":/line$/})
+
+// Poner un ^ al principio del regex permite encontrar objetos que empiecen con esa expresion
+db.inventory.find({"item.description":/^single/i})
+
+// Poner una m al final del regex indica que la expresion va a ser multilinea
+db.inventory.find({"item.description":/^s/im})

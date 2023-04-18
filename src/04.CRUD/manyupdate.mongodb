@@ -1,0 +1,31 @@
+use("sample_training")
+
+// De la misma forma que en updateOne, debemos especificar una condición
+db.zips.updateMany(
+    { city: "CLEVELAND" },
+    {
+        $inc: {
+            pop: 1000
+        }
+    }
+)
+
+// $rename, como su nombre lo indica, permite modificar el nombre de un atributo
+db.zips.updateMany(
+    { city: "CLEVELAND" },
+    {
+        $rename: {
+            pop: "population"
+        }
+    }
+)
+
+// $unset permite desvincular un atributo. Es especialmente util cuando no se utiliza.
+db.zips.updateMany(
+    { city: "CLEVELAND" },
+    {
+        $unset: {
+            population: ""
+        }
+    }
+)

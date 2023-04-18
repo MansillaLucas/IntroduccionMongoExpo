@@ -1,0 +1,31 @@
+// Si Mongo no encuentra la Revistero, la crea
+use("Revistero")
+
+// Inserta solo un elemento en la colección
+db.Revista.insertOne(
+    {
+        titulo: "Cosmopolitan",
+        tipo: "Revista",
+        precio: 250.5,
+        etiquetas: ["drama", "actualidad", "Argentina"]
+    }
+)
+
+db.Revista.insertOne(
+    {
+        titulo: "Billiken",
+        tipo: "Revista",
+        precio: 200,
+        etiquetas: ["niños", "informativo", "Argentina"]
+    }
+)
+
+// Se puede asignar un id particular,
+// pero hay que procurar que no existan los mismos dentro de la coleccion para no colisionar
+db.Revista.insertOne({
+    _id: 1,
+    titulo: "Muy interesante",
+    tipo: "Revista",
+    precio: 300,
+    etiquetas: ["informativa", "ciencia", "cultura", "ARGENTINA"]
+})

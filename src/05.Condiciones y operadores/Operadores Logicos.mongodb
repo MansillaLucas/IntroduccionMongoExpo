@@ -1,0 +1,58 @@
+use("sample_training")
+
+// Al igual que en bases de datos tradicionales, podemos llevar a cabo operaciones mediante operadores logicos.
+// Mongo principalmente posee tres operadores que podemos usar para realizar consultas.
+
+// $and (usado explicitamente) permite acotar los resultados de una consulta acorde a las condiciones dadas.
+db.inspections.find({
+    $and:[
+        {sector: "Tax Preparers - 891"},
+        {result: "Unable to Locate"}
+    ]
+})
+
+// $or permite agrandar los resultados de una consulta acorde a todas las condiciones dadas,
+// incluyendo todos ellos.
+db.inspections.find({
+    $or:[
+        {sector: "Tax Preparers - 891"},
+        {result: "Unable to Locate"}
+    ]
+})
+
+// $nor permite entregar los resultados de una consulta dejando fuera las condiciones dadas.
+db.inspections.find({
+    $nor:[
+        {sector: "Tax Preparers - 891"},
+        {result: "Unable to Locate"}
+    ]
+})
+
+// $not permite entregar los resultados de una consulta cuyos resultados NO coincidan con el valor especificado.
+db.inspections.find({
+    result: {
+        $not: /Unable to Locate/
+    }
+})
+
+// Como era de esperarse, estos operadores se pueden mezclar.
+db.routes.find({
+    $and:[
+        {airplane:"E70"},
+        {
+            $or:[
+                {dst_airport:"BOG"},
+                {src_airport:"BOG"}
+            ]
+        }
+    ]
+})
+
+// o de forma simplificada
+db.routes.find({ 
+    airplane: "E70",
+    $or: [
+        { dst_airport: "BOG" },
+        { src_airport: "BOG" }
+    ]
+})

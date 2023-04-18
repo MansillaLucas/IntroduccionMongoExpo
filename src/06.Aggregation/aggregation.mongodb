@@ -1,0 +1,18 @@
+use("sample_airbnb")
+
+db.listingsAndReviews.find({
+    amenities: "Wifi"
+}, {
+    price: 1,
+    amenities: 1
+})
+
+// Como se explica en el documento, el Aggregation framework funciona como un pipeline.
+// Es decir, que el resultado de la salida de un paso, va a ser la entrada del paso siguiente.
+// Lo bueno de esto es que nos permite ejecutar, sobre un conjunto de datos, una serie de tareas que puede ser
+// comprendida de forma clara, y al mismo tiempo nos da poderosas herramientas para trabajar.
+db.listingsAndReviews.aggregate([
+    { $match: { amenities: "Wifi" } },
+    { $project: { address: 1 } },
+    { $group: { _id: "$address.country", count: { $sum: 1 } } }
+])
