@@ -1,0 +1,20 @@
+use("Revistero")
+
+// El operador $expr es muy poderoso, ya que nos permite hacer comparaciones sobre los mismos datos.
+// Esto nos permite llevar a cabo las mismas operaciones que conociamos, con la diferencia que
+// podemos usar nuestros propios valores, en vez de depender de valores fijos.
+db.articulos.find({
+    $expr:{
+        $gte:["$precio", "$precioAnterior"]
+    }
+})
+
+// Como era de esperarse, se pueden mezclar con varias condiciones para arrojar los resultados deseados.
+db.articulos.find({
+    $expr:{
+        $and:[
+            {$gte:["$precio", "$precioAnterior"]},
+            {tipo:"Revista"}
+        ]
+    }
+})

@@ -1,0 +1,22 @@
+use("Revistero")
+
+// El comando $gt permite encontrar los valores que sean mas grandes que el numero especificado
+db.articulos.find({precio: {$gt:300}})
+
+// El comando $gte permite encontrar los valores que sean mas grandes o iguales que el numero especificado
+db.articulos.find({precio: {$gte:300}})
+
+// El comando $lt permite encontrar los valores que sean mas chicos que el numero especificado
+db.articulos.find({precio: {$lt:300}})
+
+// El comando $lte permite encontrar los valores que sean mas chicos que el numero especificado
+db.articulos.find({precio: {$lte:300}})
+
+// Se pueden combinar mas de una condición para especificar un rango de busqueda/filtro
+db.articulos.find({precio: {$gte:300, $lt:5000}})
+
+// Además de esto, se puede hacer una busqueda entre los elementos dentro de un objeto de la siguiente forma
+db.articulos.find({
+    "relacionados.promocion": "Lupa de regalo",
+    precio: {$gte:200, $lt:500}
+})

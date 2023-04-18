@@ -4,4 +4,4 @@ use("Revistero")
 db.articulos.deleteOne({_id:6})
 
 // deleteMany borra todos los elementos que cumplan con la condición
-db.articulos.deleteOne({tipo: "Revista"})
+db.articulos.deleteMany({tipo: "Revista"})

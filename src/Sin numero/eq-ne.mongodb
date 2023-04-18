@@ -1,0 +1,18 @@
+use("Revistero")
+
+// El comando $eq permite encontrar los valores que cumplan con una igualdad
+db.articulos.find({precio: {$eq:300}})
+
+// El comando $ne permite encontrar los valores que sean distintos a la condición indicada
+db.articulos.find({precio: {$ne:300}})
+
+// Al igual que los condicionales al momento de hacer update/delete,
+// se pueden especificar para buscar valores concretos
+db.articulos.updateMany(
+    {precio: {$ne:300}},
+    {
+        $inc:{
+            precio:30
+        }
+    }
+)

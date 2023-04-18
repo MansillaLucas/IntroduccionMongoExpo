@@ -7,7 +7,7 @@ use("Revistero")
 //     por lo tanto un valor de 2 va a mostrar los documentos de 3 en adelante.
 
 db.articulos
-.find({precio:{$gte:300}})
+.find({precio:{$gt:300}})
 .sort({precio:-1})
 .limit(3)
 .skip(1)

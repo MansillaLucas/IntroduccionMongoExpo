@@ -1,58 +1,58 @@
-use("sample_training")
+use("Revistero")
 
 // Al igual que en bases de datos tradicionales, podemos llevar a cabo operaciones mediante operadores logicos.
 // Mongo principalmente posee tres operadores que podemos usar para realizar consultas.
 
 // $and (usado explicitamente) permite acotar los resultados de una consulta acorde a las condiciones dadas.
-db.inspections.find({
+db.articulos.find({
     $and:[
-        {sector: "Tax Preparers - 891"},
-        {result: "Unable to Locate"}
+        {tipo: "Revista"},
+        {precio: 300}
     ]
 })
 
 // $or permite agrandar los resultados de una consulta acorde a todas las condiciones dadas,
 // incluyendo todos ellos.
-db.inspections.find({
+db.articulos.find({
     $or:[
-        {sector: "Tax Preparers - 891"},
-        {result: "Unable to Locate"}
+        {tipo: "Revista"},
+        {precio: 300}
     ]
 })
 
 // $nor permite entregar los resultados de una consulta dejando fuera las condiciones dadas.
-db.inspections.find({
+db.articulos.find({
     $nor:[
-        {sector: "Tax Preparers - 891"},
-        {result: "Unable to Locate"}
+        {tipo: "Revista"},
+        {precio: 300}
     ]
 })
 
 // $not permite entregar los resultados de una consulta cuyos resultados NO coincidan con el valor especificado.
-db.inspections.find({
-    result: {
-        $not: /Unable to Locate/
+db.articulos.find({
+    titulo: {
+        $not: /^M/
     }
 })
 
 // Como era de esperarse, estos operadores se pueden mezclar.
-db.routes.find({
+db.articulos.find({
     $and:[
-        {airplane:"E70"},
+        {tipo:"Revista"},
         {
             $or:[
-                {dst_airport:"BOG"},
-                {src_airport:"BOG"}
+                {precio:300},
+                {precioAnterior:300}
             ]
         }
     ]
 })
 
-// o de forma simplificada
-db.routes.find({ 
-    airplane: "E70",
+// // o de forma simplificada
+db.articulos.find({ 
+    tipo:"Revista",
     $or: [
-        { dst_airport: "BOG" },
-        { src_airport: "BOG" }
+        {precio:300},
+        {precioAnterior:250}
     ]
 })

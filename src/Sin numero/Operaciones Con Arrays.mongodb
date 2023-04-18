@@ -1,0 +1,27 @@
+use("Revistero")
+
+// El comando $in permite devolver elementos en los cuales uno de sus arreglos contenga alguno de los valores
+db.articulos.find({etiquetas:{$in:["Argentina", "cultura"]}})
+
+// El comando $nin permite devolver elementos en los cuales uno de sus arreglos no contenga ninguno de los valores
+db.articulos.find({etiquetas:{$nin:["Argentina", "cultura"]}})
+
+// Las busquedas dentro de arreglos funcionan de distintas formas:
+// * Si se especifica un solo valor tag, buscará todos los elementos que tenga ese valor en particular.
+// * Si especifica mas de un valor entre corchetes, debe tener en cuenta el orden en el cuál aparecen.
+// * Especificarlos de forma ordenada va a hacer que los resultados devueltos no sean los mismos.
+db.articulos.find({etiquetas:"Argentina"}) //Encuentra todos los objectos con "Argentina" dentro de sus tags.
+db.articulos.find({etiquetas:["niños", "informativo", "Argentina"]}) //Encuentra un solo elemento
+db.articulos.find({etiquetas:["Argentina", "niños","informativo"]}) //No arroja resultados
+
+// El comando $all permite encontrar cualquier coincidencia de las que se especifican dentro del arreglo tags
+db.articulos.find({etiquetas:{$all:["Argentina","informativo"]}})
+
+// El operador $elemMatch permite crear consultas complejas, detallando condiciones especificas
+db.articulos.find(
+    {creadores: 
+        {$elemMatch: 
+            {nombre: /Joaquín/, anioNacimiento:{$gte:1930}}
+        }
+    }
+)

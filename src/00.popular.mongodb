@@ -6,34 +6,58 @@ db.articulos.insertMany([
         titulo: "Billiken",
         tipo: "Revista",
         precio: 200,
-        etiquetas: ["niños", "informativo", "Argentina"]
+        precioAnterior:200,
+        etiquetas: ["niños", "informativo", "Argentina"],
+        relacionados:{
+            _id: 1,
+            promocion: "Lupa de regalo"
+        }
     },
     {
         _id: 2,
         titulo: "Gente",
         tipo: "Revista",
-        precio: 250.5,
-        etiquetas: ["drama", "actualidad", "Argentina"]
+        precio: 300,
+        precioAnterior:250,
+        etiquetas: ["drama", "actualidad", "Argentina"],
+        relacionados:{
+            _id: 2,
+            promocion: "Cuponera en productos de belleza"
+        }
     },
     {
         _id: 3,
         titulo: "Muy interesante",
         tipo: "Revista",
         precio: 300,
-        etiquetas: ["informativa", "ciencia", "cultura", "ARGENTINA"]
+        precioAnterior:310,
+        etiquetas: ["informativa", "ciencia", "cultura", "ARGENTINA"],
+        relacionados:{
+            _id: 1,
+            promocion: "Lupa de regalo"
+        }
     },
     {
         _id: 4,
         titulo: "Mafalda",
         tipo: "Libro",
         precio: 12000,
-        etiquetas: ["humor", "politica", "cultura"]
+        precioAnterior:10000,
+        etiquetas: ["humor", "politica", "cultura"],
+        creadores:[
+            {
+                "nombre": "Joaquín Salvador",
+                "apellido": "Lavado Tejón",
+                "anioNacimiento": 1932
+            }
+        ]
     },
     {
         _id: 5,
         titulo: "Un Mundo Inmenso",
         tipo: "Libro",
         precio: 5000,
+        precioAnterior:5200,
         etiquetas: ["informativo", "con imagenes", "universal"]
     },
     {
@@ -41,12 +65,26 @@ db.articulos.insertMany([
         titulo: "El Eternauta",
         tipo: "Libro",
         precio: 10000,
+        precioAnterior:9500,
         etiquetas: ["comic/novelag", "con imagenes", "Universal"]
     },
     {
-        titulo: "Spiderman",
+        titulo: "Spiderman\nBlue",
         tipo: "Comic",
         precio: 500,
-        etiquetas: ["comic/novelag", "superheroes", "araña"]
+        precioAnterior:450,
+        etiquetas: ["comic/novelag", "superheroes", "araña"],
+        creadores:[
+            {
+                "nombre": "Stan",
+                "apellido": "Lee",
+                "anioNacimiento": 1922
+            },
+            {
+                "nombre": "Steve",
+                "apellido": "Ditko",
+                "anioNacimiento": 1927
+            }
+        ]
     }
 ])

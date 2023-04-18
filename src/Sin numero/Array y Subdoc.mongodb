@@ -1,0 +1,21 @@
+use("Revistero")
+
+// Mongo permite buscar objetos acorde a su posición.
+// Esto se consigue colocando un valor numérico luego de un atributo, y es especialmente útil al buscar
+// documentos dentros de otros, estos se conocen como subdocumentos.
+// Esta instrucción busca creadores en el articulo "Spiderman" que se llaman Stan,
+// para eso usa la primer posición asumiendo que la primera es el creador principal
+db.articulos.find({
+    "creadores.0.nombre":"Stan"
+})
+
+// Esto sin embargo no es optimo, ya que no sabe qué documentos van a tener un creador con tal nombre
+// Acá sin embargo, busca en todos los subdocumentos cualquier creador con el nombre Stan.
+// Trayendo el documento completo
+db.articulos.find({
+    creadores:{
+        $elemMatch:{
+            "nombre":"Stan"
+        }
+    }
+})
