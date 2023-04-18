@@ -25,12 +25,7 @@ db.articulos.insertMany([
         tipo: "Revista",
         precio: 300,
         etiquetas: ["informativa", "ciencia", "cultura", "ARGENTINA"]
-    }
-])
-
-// Alternativamente, se puede insertar Revistas sin problemas de duplicidad con ordered
-// incluso estando después de un documento con problemas de duplicidad
-db.articulos.insertMany([
+    },
     {
         _id: 4,
         titulo: "Todo Mafalda",
@@ -46,19 +41,16 @@ db.articulos.insertMany([
         etiquetas: ["informativo", "con imagenes", "universal"]
     },
     {
-        _id: 4,
-        titulo: "Spiderman",
-        tipo: "Comic",
-        precio: 500,
-        etiquetas: ["comic/novelag", "superheroes", "araña"]
-    },
-    {
         _id: 6,
         titulo: "El Eternauta",
         tipo: "Libro",
         precio: 10000,
         etiquetas: ["comic/novelag", "con imagenes", "Universal"]
+    },
+    {
+        titulo: "Spiderman",
+        tipo: "Comic",
+        precio: 500,
+        etiquetas: ["comic/novelag", "superheroes", "araña"]
     }
-], {
-    ordered:false
-})
+])

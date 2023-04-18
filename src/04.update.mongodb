@@ -1,0 +1,41 @@
+use("Revistero")
+
+// Modifica solo un elemento en la colección
+// La modificación depende de dos pasos:
+// * La busqueda de los elementos que se van a cambiar
+// * El comando necesario para especificar qué tipo de cambio se va a hacer + el cambio en esos campos
+
+// $set establece los valores de los parametros
+// Adicionalmente, se pueden agregar más campos a los que originalmente tenía
+db.Productos.updateOne(
+    {_id:4},
+    {
+        $set:{
+            "price":11000,
+            "descripcion": "Todo Mafalda es un compilado de la mejor obra de Quino"
+        }
+    }
+
+)
+
+// $inc incrementa un valor numerico por una cantidad especifica
+db.Productos.updateOne(
+    {_id:4},
+    {
+        $inc:{
+            "price":1000
+        }
+    }
+
+)
+
+// En caso de ids generados por Mongo, es necesario usar la función ObjectId.
+db.Productos.updateOne(
+    {_id: ObjectId('6435cc0f393e0280b474ca29')},
+    {
+        $inc:{
+            "price":500
+        }
+    }
+
+)

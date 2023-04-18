@@ -1,4 +1,4 @@
-use("sample_training")
+use("Revistero")
 
 // Mongo trae tres funciones primordiales para el funcionamiento de paginación.
 // * Sort: Permite ordenar los documentos, con 1 de menor a mayor y -1 al revés.
@@ -6,8 +6,8 @@ use("sample_training")
 // * Skip: Salta esa cantidad de documentos,
 //     por lo tanto un valor de 2 va a mostrar los documentos de 3 en adelante.
 
-db.zips
-.find({pop:{$gte:100}})
-.sort({pop:-1})
-.limit(10)
-.skip(3)
+db.articulos
+.find({precio:{$gte:300}})
+.sort({precio:-1})
+.limit(3)
+.skip(1)

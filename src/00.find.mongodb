@@ -2,8 +2,8 @@
 use("Revistero")
 
 // Busqueda simple sobre los documentos, todos sin excepción
-db.Revistas.find()
+db.articulos.find()
 // // Busqueda simple sobre los documentos, solo aquellos que sean de categoría Revista
-// db.Revistas.find({ tipo:"Revista" })
+// db.articulos.find({ tipo:"Revista" })
 // // Cuenta la cantidad de resultados, solo aquellos que sean de categoría Revista
-// db.Revistas.find({ tipo:"Revista" }).count()
+// db.articulos.find({ tipo:"Revista" }).count()
