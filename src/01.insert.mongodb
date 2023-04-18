@@ -2,7 +2,7 @@
 use("Revistero")
 
 // Inserta solo un elemento en la colección
-db.Revista.insertOne(
+db.articulos.insertOne(
     {
         titulo: "Cosmopolitan",
         tipo: "Revista",
@@ -11,7 +11,7 @@ db.Revista.insertOne(
     }
 )
 
-db.Revista.insertOne(
+db.articulos.insertOne(
     {
         titulo: "Billiken",
         tipo: "Revista",
@@ -22,7 +22,7 @@ db.Revista.insertOne(
 
 // Se puede asignar un id particular,
 // pero hay que procurar que no existan los mismos dentro de la coleccion para no colisionar
-db.Revista.insertOne({
+db.articulos.insertOne({
     _id: 1,
     titulo: "Muy interesante",
     tipo: "Revista",

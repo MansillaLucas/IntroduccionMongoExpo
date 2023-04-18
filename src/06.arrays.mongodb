@@ -1,0 +1,24 @@
+use("Revistero")
+
+// $push es un comando que sirve para insertar un elemento más en atributos de tipo arreglo
+db.articulos.updateOne({_id:1},{
+    $push:{
+        etiquetas:"juvenil"
+    }
+})
+
+// $pull es un comando que sirve para quitar un elemento más en atributos de tipo arreglo
+db.articulos.updateMany({},{
+    $pull:{
+        etiquetas:"Argentina"
+    }
+})
+
+// Podemos especificar más de un item en un arreglo para borrar. Si se encuentra se quita, y sino no.
+db.articulos.updateMany({_id:5},{
+    $pull:{
+        etiquetas:{
+            $in:["comic/novelag", "universal"]
+        }
+    }
+})

@@ -1,0 +1,23 @@
+use("Revistero")
+
+// $pop permite retirar un valor del principio o el final del arreglo.
+// 1 saca el último, -1 saca el primero.
+db.articulos.updateOne(
+    { titulo:"Mafalda", tipo: "Libro" },
+    {
+        $pop: {
+            etiquetas: 1
+        }
+    }
+)
+
+// La opción upsert permite agregar un documento en caso de que no exista.
+// En caso de que sí exista, lo actualiza con la nueva información.
+db.articulos.updateOne(
+    { titulo:"Mafalda", tipo: "Revista" },
+    {
+        $push: {
+            etiquetas: "joven"
+        }
+    },
+    {upsert: true})

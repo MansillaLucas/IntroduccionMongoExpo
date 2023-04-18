@@ -1,0 +1,31 @@
+use("Revistero")
+
+// De la misma forma que en updateOne, debemos especificar una condición
+db.articulos.updateMany(
+    { tipo: "Revista" },
+    {
+        $inc: {
+            precio: 10
+        }
+    }
+)
+
+// $rename, como su nombre lo indica, permite modificar el nombre de un atributo
+db.articulos.updateMany(
+    { tipo: "Revista" },
+    {
+        $rename: {
+            precio: "monto"
+        }
+    }
+)
+
+// // $unset permite desvincular un atributo. Es especialmente util cuando no se utiliza.
+db.articulos.updateMany(
+    { tipo: "Revista" },
+    {
+        $unset: {
+            monto: ""
+        }
+    }
+)
